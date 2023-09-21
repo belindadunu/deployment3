@@ -17,7 +17,7 @@ def your_url():
 
         if os.path.exists('urls.json'):
             with open('urls.json') as urls_file:
-                urls = json.loads(urls_file)
+                urls = json.load(urls_file)
 
         if request.form['code'] in urls.keys():
             flash('That short name has already been taken. Please select another name.')
