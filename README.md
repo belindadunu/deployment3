@@ -41,6 +41,7 @@ I then ran `git checkout -b <branch name> <commit hash ID>` to create and switch
 This allowed me to deploy the known good v1 code again.
 
 To save these changes, I ran the following:
+
     - `$ git add .`
 
     - `git commit -m "Made changes based on rollback-v1"`
