@@ -24,7 +24,9 @@ The site then went down for 5 minutes, triggering an email alert.
 
 **Duration:** 5 minutes.
 
-**Resolution steps:** Checked monitoring, logs, and git to identify the recent deploy. To roll back, I first ran `git log --oneline` to view recent commits. I saw version 2 had been merged to main.
+**Resolution steps:** Checked monitoring, logs, and git to identify the recent deploy. 
+
+To roll back, I first ran `git log --oneline` to view recent commits. I saw version 2 had been merged to main.
 
 I initially thought of troubleshooting but that would take an unknown amount of time to figure out the root cause. I decdied to complete a rollback.
 
@@ -38,8 +40,14 @@ This allowed me to deploy the known good v1 code again.
 
 To save these changes, I ran the following:
     `$ git add .`
+    
     `git commit -m "Made changes based on rollback-v1"`
+    
     `git push -u origin main`
+
+    <img width="735" alt="Screen Shot 2023-09-22 at 12 16 34 PM" src="https://github.com/belindadunu/deployment3.1/assets/139175163/65bf8b49-5ee3-42f7-a06c-41ac3e47259e">
+    <img width="905" alt="Screen Shot 2023-09-22 at 11 31 54 AM" src="https://github.com/belindadunu/deployment3.1/assets/139175163/5c98e485-fc0f-4978-8598-c2c418757f72">
+
 
 **Fully resolved?** Yes, successfully rolled back to proven version 1.
 
@@ -50,8 +58,11 @@ To save these changes, I ran the following:
 We need to improve any of our future deployment processes to prevent direct commits to the main branch. Other possible ways:
 
     - Require pull requests and approvals instead of direct commit
+    
     - Add staging environment for pre-production testing, if not already enabled
+    
     - By adding checks and testing, we can prevent production outages caused by new code.
+    
     - Use tools like DataDog to monitor our systems and alert us immediately of any outages
 
 ## Conclusion
