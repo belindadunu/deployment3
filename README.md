@@ -24,11 +24,13 @@ The site then went down for 5 minutes, triggering an email alert.
 
 **Duration:** 5 minutes.
 
-**Resolution steps:** Checked monitoring, logs, and git to identify the recent deploy. 
+**Resolution steps:** Checked monitoring, logs, and git to identify the recent deployment. 
 
-To roll back, I first ran `git log --oneline` to view recent commits. I saw version 2 had been merged to main.
+To roll back, I first ran `git log --oneline` to view recent commits. I saw version 2 had been merged into the main branch.
 
-I initially thought of troubleshooting but that would take an unknown amount of time to figure out the root cause. I decdied to complete a rollback.
+<img width="908" alt="Screen Shot 2023-09-22 at 11 05 09 AM" src="https://github.com/belindadunu/deployment3.1/assets/139175163/c12efce9-e28d-4aa8-93e7-78fe24c55b5c">
+
+I initially thought of troubleshooting but that would take an unknown amount of time to figure out the root cause. I decided to complete a rollback.
 
 To rollback, I could have checked out the main branch again, but that would still contain the faulty v2 code.
 
@@ -45,13 +47,12 @@ To save these changes, I ran the following:
     
     - `git push -u origin main`
 
-    <img width="735" alt="Screen Shot 2023-09-22 at 12 16 34 PM" src="https://github.com/belindadunu/deployment3.1/assets/139175163/65bf8b49-5ee3-42f7-a06c-41ac3e47259e">
-    <img width="905" alt="Screen Shot 2023-09-22 at 11 31 54 AM" src="https://github.com/belindadunu/deployment3.1/assets/139175163/5c98e485-fc0f-4978-8598-c2c418757f72">
-
+<img width="735" alt="Screen Shot 2023-09-22 at 12 16 34 PM" src="https://github.com/belindadunu/deployment3.1/assets/139175163/65bf8b49-5ee3-42f7-a06c-41ac3e47259e">
+<img width="905" alt="Screen Shot 2023-09-22 at 11 31 54 AM" src="https://github.com/belindadunu/deployment3.1/assets/139175163/5c98e485-fc0f-4978-8598-c2c418757f72">
 
 **Fully resolved?** Yes, successfully rolled back to proven version 1.
 
-**Prevention:** For this situation, I tightened permissions so code must be reviewed before deployment. Junior engineers need senior approval; this prevents faulty code from being merged to the main.
+**Prevention:** For this situation, I tightened permissions so code must be reviewed before deployment. Junior engineers need senior approval; this prevents faulty code from being merged into the main.
 
 ## Next Steps
 -----------------------------------------
@@ -61,7 +62,7 @@ We need to improve any of our future deployment processes to prevent direct comm
     
     - Add staging environment for pre-production testing, if not already enabled
     
-    - By adding checks and testing, we can prevent production outages caused by new code.
+    - By adding checks and testing, we can prevent production outages caused by new code
     
     - Use tools like DataDog to monitor our systems and alert us immediately of any outages
 
