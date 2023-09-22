@@ -54,6 +54,8 @@ To save these changes, I ran the following:
 
 **Fully resolved?** Yes, successfully rolled back to proven version 1.
 
+<img width="1435" alt="Screen Shot 2023-09-22 at 3 51 42 PM" src="https://github.com/belindadunu/deployment3.1/assets/139175163/56573cd6-3435-4a96-a2c3-44be37d63e48">
+
 **Prevention:** For this situation, I tightened permissions so code must be reviewed before deployment. Junior engineers need senior approval; this prevents faulty code from being merged into the main.
 
 ## Next Steps
