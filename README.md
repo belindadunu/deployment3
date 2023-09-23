@@ -5,7 +5,7 @@ Welcome back! In our [last deployment](https://github.com/belindadunu/jenkins-eb
 Now that we have a working deployment application, we want to improve reliability as we offer it as a service.
 
 ## The Story
------------------------------------------
+
 We are a tech start-up with a URL shortener service. We have a service level agreement (SLA) with Nike to provide access to our tool.
 
 An SLA is like a customer service guarantee for services. For example, just like a restaurant promises to bring your food within a certain time, we promise a certain uptime and reliability.
@@ -21,7 +21,7 @@ The site then went down for 5 minutes, triggering an email alert.
 <img width="732" alt="Screen Shot 2023-09-23 at 8 22 07 AM" src="https://github.com/belindadunu/deployment3.1/assets/139175163/112ccbae-d638-4ea5-8ab7-e1e256b81e59">
 
 ## Post-Incident Report
------------------------------------------
+
 **Reason for the incident:** An auto deploy of faulty version 2 code.
 
 **Duration:** 5 minutes.
@@ -61,16 +61,38 @@ To save these changes, I ran the following:
 **Prevention:** For this situation, I tightened permissions so code must be reviewed before deployment. Junior engineers need senior approval; this prevents faulty code from being merged into the main.
 
 ## Next Steps
------------------------------------------
+
 We need to improve any of our future deployment processes to prevent direct commits to the main branch. Other possible ways:
 
     - Require pull requests and approvals instead of direct commit
+    
+    - Lockdown version so any new version upgrades won't impact us unless we manually change it ourselves
     
     - Add staging environment for pre-production testing, if not already enabled
     
     - By adding checks and testing, we can prevent production outages caused by new code
     
     - Use tools like DataDog to monitor our systems and alert us immediately of any outages
+
+## Post-Rollback Troubleshooting
+
+While rolling back to the previous version resolved the immediate outage, I wanted to investigate the root cause of the failure in version 2.
+
+After rolling back, I downloaded the Elastic Beanstalk logs from the failed deployment. In the logs, I noticed an error in application.py on line 42 while trying to parse the JSON data:
+
+    - `urls = json.loads(data)`
+
+This was causing a JSON decode error because `json.loads()` expects a string, but we were passing a file object.
+
+Looking at the working version 1 code, I saw it was using:
+
+    - `urls = json.load(data)`
+
+Which correctly parses the JSON file object.
+
+So the issue was version 2 introduced an error by using the wrong JSON parsing method for our data. Rolling back restored the correct code.
+
+Documenting these kinds of findings is important for preventing future errors and noting these fixes helps strengthen the codebase.
 
 ## Conclusion
 -----------------------------------------
