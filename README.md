@@ -18,6 +18,8 @@ A new hire deployed version 2 of the app by committing directly to the main bran
 
 The site then went down for 5 minutes, triggering an email alert. 
 
+<img width="732" alt="Screen Shot 2023-09-23 at 8 22 07 AM" src="https://github.com/belindadunu/deployment3.1/assets/139175163/112ccbae-d638-4ea5-8ab7-e1e256b81e59">
+
 ## Post-Incident Report
 -----------------------------------------
 **Reason for the incident:** An auto deploy of faulty version 2 code.
@@ -28,15 +30,17 @@ The site then went down for 5 minutes, triggering an email alert.
 
 To roll back, I first ran `git log --oneline` to view recent commits. I saw version 2 had been merged into the main branch.
 
-<img width="908" alt="Screen Shot 2023-09-22 at 11 05 09 AM" src="https://github.com/belindadunu/deployment3.1/assets/139175163/c12efce9-e28d-4aa8-93e7-78fe24c55b5c">
+<img width="908" alt="Screen Shot 2023-09-22 at 11 05 09 AM" src="https://github.com/belindadunu/deployment3.1/assets/139175163/b2eadb0b-089b-43c6-aef2-7da69b395787">
 
-I initially thought of troubleshooting but that would take an unknown amount of time to figure out the root cause. I decided to complete a rollback.
+I initially thought of troubleshooting but that would take an unknown amount of time to figure out the root cause. I decided to complete a rollback for the meantime then go back to troubleshoot after.
 
 To rollback, I could have checked out the main branch again, but that would still contain the faulty v2 code.
 
 Instead, I wanted to rollback specifically to the last known good commit of version 1. I checked the hash of the v1 commit I wanted to revert to.
 
 I then ran `git checkout -b <branch name> <commit hash ID>` to create and switch to a new branch containing only the v1 commit, using its hash.
+
+<img width="732" alt="Screen Shot 2023-09-23 at 8 39 44 AM" src="https://github.com/belindadunu/deployment3.1/assets/139175163/8a5b6d6f-6f16-480c-92a4-d2276ebee0e6">
 
 This allowed me to deploy the known good v1 code again.
 
@@ -48,13 +52,11 @@ To save these changes, I ran the following:
     
     - `git push -u origin main`
 
-<img width="735" alt="Screen Shot 2023-09-22 at 12 16 34 PM" src="https://github.com/belindadunu/deployment3.1/assets/139175163/65bf8b49-5ee3-42f7-a06c-41ac3e47259e">
-
-<img width="905" alt="Screen Shot 2023-09-22 at 11 31 54 AM" src="https://github.com/belindadunu/deployment3.1/assets/139175163/5c98e485-fc0f-4978-8598-c2c418757f72">
+<img width="732" alt="Screen Shot 2023-09-23 at 8 37 27 AM" src="https://github.com/belindadunu/deployment3.1/assets/139175163/13086217-7dac-4e31-8605-ca21aa2acd28">
 
 **Fully resolved?** Yes, successfully rolled back to proven version 1.
 
-<img width="1435" alt="Screen Shot 2023-09-22 at 3 51 42 PM" src="https://github.com/belindadunu/deployment3.1/assets/139175163/56573cd6-3435-4a96-a2c3-44be37d63e48">
+<img width="1435" alt="Screen Shot 2023-09-22 at 3 50 05 PM" src="https://github.com/belindadunu/deployment3.1/assets/139175163/2766fbe7-de8d-4496-8983-fcae33076384">
 
 **Prevention:** For this situation, I tightened permissions so code must be reviewed before deployment. Junior engineers need senior approval; this prevents faulty code from being merged into the main.
 
