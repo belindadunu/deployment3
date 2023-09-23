@@ -13,7 +13,7 @@ An SLA is like a customer service guarantee for services. For example, just like
 Our SLA with Nike allows only 20 minutes of downtime per year. If anything happens, we must communicate the incidents to Nike.
  
 ## Incident Scenario
------------------------------------------
+
 A new hire deployed version 2 of the app by committing directly to the main branch. This triggered an automatic deploy that replaced version 1 in production.
 
 The site then went down for 10 minutes, triggering an email alert. 
@@ -113,7 +113,7 @@ So the issue was version 2 introduced an error by using the wrong JSON parsing m
 Documenting these kinds of findings is important for preventing future errors and noting these fixes helps strengthen the codebase.
 
 ## Conclusion
------------------------------------------
+
 While this incident only caused 10 minutes of downtime, it used up a significant portion of our allowed SLA downtime with Nike.
 
 Our SLA allows only 20 minutes of total downtime per year. So with this 10-minute outage, we have now used up 50% of our allowed annual downtime in one incident.
