@@ -64,11 +64,11 @@ This allowed me to deploy the known good v1 code again.
 
 To save these changes, we ran the following:
 
-    - `$ git add .`
+    - $ git add .
 
-    - `git commit -m "Made changes based on rollback-v1"`
+    - $ git commit -m "Made changes based on rollback-v1"
     
-    - `git push -u origin main`
+    - $ git push -u origin main
 
 <img width="732" alt="Screen Shot 2023-09-23 at 8 37 27 AM" src="https://github.com/belindadunu/deployment3.1/assets/139175163/13086217-7dac-4e31-8605-ca21aa2acd28">
 
@@ -98,13 +98,13 @@ While rolling back to the previous version resolved the immediate outage, we wan
 
 After rolling back, we downloaded the Elastic Beanstalk logs from the failed deployment. In the logs, we noticed an error in application.py on line 42 while trying to parse the JSON data:
 
-    - `urls = json.loads(data)`
+    - urls = json.loads(data)
 
 This was causing a JSON decode error because `json.loads()` expects a string, but we were passing a file object.
 
 Looking at the working version 1 code, we saw it was using:
 
-    - `urls = json.load(data)`
+    - urls = json.load(data)
 
 Which correctly parses the JSON file object.
 
